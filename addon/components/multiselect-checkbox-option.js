@@ -16,7 +16,18 @@ export default Ember.Component.extend({
   }.property('value', 'selection'),
 
   label: function () {
-    return this.get('value').get(this.get('labelProperty'));
+    var labelProperty = this.get('labelProperty');
+    var value = this.get('value');
+
+    if (labelProperty) {
+      if (typeof value.get === 'function') {
+        return value.get(labelProperty);
+      } else {
+        return value[labelProperty];
+      }
+    } else {
+      return String(value);
+    }
   }.property('value', 'labelProperty'),
 
   isSelectedChanged: function () {

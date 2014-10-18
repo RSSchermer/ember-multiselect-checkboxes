@@ -13,12 +13,37 @@ moduleForComponent('multiselect-checkbox-option', 'MultiselectCheckboxOptionComp
   }
 });
 
+test('user the correct label property with a primitive value and no label property', function () {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'value': 'apple' });
+  });
+
+  equal(this.$().find('label').text().trim(), 'apple');
+});
+
+var car = {
+  id: 1,
+  color: 'red'
+};
+
+test('user the correct label property with a plain js object', function () {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'value': car, 'labelProperty': 'color' });
+  });
+
+  equal(this.$().find('label').text().trim(), 'red');
+});
+
 var person = Ember.Object.create({
     id: 1,
     name: 'test'
   });
 
-test('uses the correct label property', function() {
+test('uses the correct label property with an ember object', function() {
   var component = this.subject();
 
   Ember.run(function(){
