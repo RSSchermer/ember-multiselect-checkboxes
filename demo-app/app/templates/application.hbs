@@ -1,0 +1,63 @@
+<article class="container">
+  <h1 id='title'>Ember multiselect-checkboxes demo</h1>
+
+  <p>Documentation for this component is available
+    <a href="https://github.com/rsschermer/ember-multiselect-checkboxes">here</a>.
+  </p>
+
+  <p>The source for this demo is available
+    <a href="https://github.com/rsschermer/ember-multiselect-checkboxes/tree/gh-pages/demo-app">here</a>.
+  </p>
+
+  <section>
+    <h2>Array of primitives</h2>
+
+    <p>This example uses a plain javascript array as the selection options, with no label property specified:</p>
+
+    <p>{{multiselect-checkboxes options=fruits selection=selectedFruits}}</p>
+
+    <p>Selected fruits:
+      <ul>
+        {{#each fruit in selectedFruits}}
+          <li>{{fruit}}</li>
+        {{/each}}
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Array of plain js objects</h2>
+
+    <p>This example uses an array of plain javascript objects as the selection options, with 'make' specified as the
+      label property:
+    </p>
+
+    <p>{{multiselect-checkboxes options=cars selection=selectedCars labelProperty="make"}}</p>
+
+    <p>Selected cars:
+      <ul>
+        {{#each car in selectedCars}}
+          <li>make: {{car.make}}, color: {{car.color}}</li>
+        {{/each}}
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Array of Ember objects</h2>
+    
+    <p>This example uses an array of ember objects as the selection options, with 'name' specified as the
+      label property:
+    </p>
+
+    <p>{{multiselect-checkboxes options=persons selection=selectedPersons labelProperty="name"}}</p>
+
+    <p>Selected persons:
+      <ul>
+        {{#each person in selectedPersons}}
+          <li>name: {{person.name}}, gender: {{person.gender}}</li>
+        {{/each}}
+      </ul>
+    </p>
+  </section>
+</article>
