@@ -11,7 +11,17 @@ export default Ember.Component.extend({
 
   labelProperty: null,
 
-  isSelected: function () {
+  isSelected: function (_, checked) {
+    if (arguments.length > 1) {
+      var selected = this.get('selection').contains(this.get('value'));
+
+      if (checked && !selected) {
+        this.get('selection').addObject(this.get('value'));
+      } else if (!checked && selected) {
+        this.get('selection').removeObject(this.get('value'));
+      }
+    }
+
     return this.get('selection').contains(this.get('value'));
   }.property('value', 'selection'),
 
@@ -28,13 +38,5 @@ export default Ember.Component.extend({
     } else {
       return String(value);
     }
-  }.property('value', 'labelProperty'),
-
-  isSelectedChanged: function () {
-    if (this.get('isSelected') && !this.get('selection').contains(this.get('value'))) {
-      this.get('selection').addObject(this.get('value'));
-    } else {
-      this.get('selection').removeObject(this.get('value'));
-    }
-  }.observes('isSelected')
+  }.property('value', 'labelProperty')
 });

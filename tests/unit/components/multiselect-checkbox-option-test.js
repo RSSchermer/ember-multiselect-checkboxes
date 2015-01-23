@@ -87,3 +87,25 @@ test('removes value from selection when deselected', function() {
 
   equal(component.get('selection.length'), 0);
 });
+
+test('correctly updates isSelected when changing the selection', function() {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'value': person, 'labelProperty': 'name', 'selection': [] });
+  });
+
+  equal(component.get('isSelected'), false);
+
+  Ember.run(function(){
+    component.set('selection', [person]);
+  });
+
+  equal(component.get('isSelected'), true);
+
+  Ember.run(function(){
+    component.set('selection', []);
+  });
+
+  equal(component.get('isSelected'), false);
+});
