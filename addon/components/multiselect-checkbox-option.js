@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['multiselect-checkbox-option'],
+  classNameBindings: ['isSelected:checked'],
 
   tagName: 'li',
 
