@@ -39,5 +39,9 @@ export default Ember.Component.extend({
     } else {
       return String(value);
     }
-  }.property('value', 'labelProperty')
+  }.property('value', 'labelProperty'),
+
+  mouseUp: function (event) {
+    this.sendAction('action', this.get('value'));
+  }
 });
