@@ -1,4 +1,4 @@
-# Ember-multiselect-checkboxes
+# Ember-multiselect-checkboxes [![](https://travis-ci.org/RSSchermer/ember-multiselect-checkboxes.svg?branch=master)](https://travis-ci.org/RSSchermer/ember-multiselect-checkboxes)
 
 Simple Ember component for allowing multiple selection using checkboxes from a certain collection (a hasMany property
 for example).
