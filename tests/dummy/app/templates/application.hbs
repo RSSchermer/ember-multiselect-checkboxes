@@ -50,13 +50,14 @@
       label property:
     </p>
 
-    <p>{{multiselect-checkboxes options=persons selection=selectedPersons labelProperty="name"}}</p>
+    <p>{{multiselect-checkboxes options=persons selection=selectedPersons labelProperty="name" disabled=personsDisabled}}</p>
 
     <p>
       <a href="#" {{action "selectAllPersons"}}>Select all</a>
       <a href="#" {{action "clearPersons"}}>Clear all</a>
+      <a href="#" {{action "toggleDisabled"}}>Toggle Enabled/Disabled</a>
     </p>
-    
+
     <p>Selected persons:
       <ul>
         {{#each person in selectedPersons}}

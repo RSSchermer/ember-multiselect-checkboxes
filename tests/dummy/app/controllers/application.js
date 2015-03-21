@@ -27,6 +27,8 @@ export default Ember.Controller.extend({
 
   selectedPersons: [],
 
+  personsDisabled: false,
+
   actions: {
     selectAllPersons: function() {
       this.set("selectedPersons", this.get('persons').copy());
@@ -34,6 +36,10 @@ export default Ember.Controller.extend({
 
     clearPersons: function() {
       this.set("selectedPersons", []);
+    },
+
+    toggleDisabled: function() {
+      this.set("personsDisabled", !this.get("personsDisabled"));
     }
   }
 });
