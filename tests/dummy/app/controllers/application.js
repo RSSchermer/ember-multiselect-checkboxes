@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
     },
 
     toggleDisabled: function() {
-      this.set("personsDisabled", !this.get("personsDisabled"));
+      this.toggle("personsDisabled");
     }
   }
 });
