@@ -5,13 +5,11 @@ import Ember from 'ember';
 var App;
 
 moduleForComponent('multiselect-checkboxes', 'MultiselectCheckboxesComponent', {
-  needs: ['component:multiselect-checkbox-option', 'template:components/multiselect-checkbox-option'],
-
-  beforeEach: function() {
+  beforeEach: function () {
     App = startApp();
   },
 
-  afterEach: function() {
+  afterEach: function () {
     Ember.run(App, 'destroy');
   }
 });
@@ -132,6 +130,74 @@ test('removes the value a checkbox represents from the selection when that check
 
   assert.equal(component.get('selection.length'), 0);
   assert.equal(component.get('selection').contains(persons[0]), false);
+});
+
+test('checks the correct options with plain js values and a value property', function (assert) {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'options': cars, 'selection': ['red'], 'labelProperty': 'make', 'valueProperty': 'color' });
+  });
+
+  var $component = this.render();
+
+  var labels = $component.find('label');
+
+  assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), false);
+  assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), true);
+  assert.equal($(labels[2]).find('input[type="checkbox"]').prop('checked'), false);
+});
+
+test('updates the selection correctly with plain js values and a value property', function (assert) {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'options': cars, 'selection': ['red'], 'labelProperty': 'make', 'valueProperty': 'color' });
+  });
+
+  var $component = this.render();
+
+  var labels = $component.find('label');
+
+  $(labels[0]).find('input[type="checkbox"]').click();
+
+  assert.equal(component.get('selection.length'), 2);
+  assert.equal(component.get('selection').contains('black'), true);
+  assert.equal(component.get('selection').contains('red'), true);
+});
+
+test('checks the correct options with Ember object values and a value property', function (assert) {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'options': persons, 'selection': ['Bob'], 'labelProperty': 'name', 'valueProperty': 'name' });
+  });
+
+  var $component = this.render();
+
+  var labels = $component.find('label');
+
+  assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), false);
+  assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), true);
+  assert.equal($(labels[2]).find('input[type="checkbox"]').prop('checked'), false);
+});
+
+test('updates the selection correctly with Ember object values and a value property', function (assert) {
+  var component = this.subject();
+
+  Ember.run(function(){
+    component.setProperties({ 'options': persons, 'selection': ['Bob'], 'labelProperty': 'name', 'valueProperty': 'name' });
+  });
+
+  var $component = this.render();
+
+  var labels = $component.find('label');
+
+  $(labels[0]).find('input[type="checkbox"]').click();
+
+  assert.equal(component.get('selection.length'), 2);
+  assert.equal(component.get('selection').contains('Lisa'), true);
+  assert.equal(component.get('selection').contains('Bob'), true);
 });
 
 test('disables all checkboxes when disabled is set to true', function (assert) {

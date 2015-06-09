@@ -30,3 +30,10 @@ When using this component with an array of javascript objects or an array of Emb
 
 * `labelProperty`: the property on the plain javascript object or the Ember object that will be used as a label for the
   checkbox.
+
+When using this component with an array of javascript objects or an array of Ember objects you may optionally specify
+the `valueProperty` attribute:
+
+* `valueProperty`: the property on the plain javascript object or the Ember object that will be used to represent this
+  object in the selection. Example: when using an array of car objects as the options, if you set the `valueProperty`
+  as their "color" property, the selection will be an array of color strings (not an array of cars).

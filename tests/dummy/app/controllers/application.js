@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
     },
 
     toggleDisabled: function() {
-      this.toggle("personsDisabled");
+      this.toggleProperty("personsDisabled");
     }
   }
 });
