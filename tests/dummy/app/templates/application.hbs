@@ -18,7 +18,7 @@
 
     <p>Selected fruits:
       <ul>
-        {{#each fruit in selectedFruits}}
+        {{#each selectedFruits as |fruit|}}
           <li>{{fruit}}</li>
         {{/each}}
       </ul>
@@ -36,7 +36,7 @@
 
     <p>Selected cars:
       <ul>
-        {{#each car in selectedCars}}
+        {{#each selectedCars as |car|}}
           <li>make: {{car.make}}, color: {{car.color}}</li>
         {{/each}}
       </ul>
@@ -60,7 +60,7 @@
 
     <p>Selected persons:
       <ul>
-        {{#each person in selectedPersons}}
+        {{#each selectedPersons as |person|}}
           <li>name: {{person.name}}, gender: {{person.gender}}</li>
         {{/each}}
       </ul>

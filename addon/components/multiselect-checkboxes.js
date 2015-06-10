@@ -21,9 +21,9 @@ export default Ember.Component.extend({
 
   tagName: 'ul',
 
-  options: [],
+  options: Ember.A(),
 
-  selection: [],
+  selection: Ember.A(),
 
   labelProperty: null,
 
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
     var valueProperty = this.get('valueProperty');
     var selection = this.get('selection');
 
-    return this.get('options').map(function (option) {
+    var checkboxes = this.get('options').map((option) => {
       var label, value;
 
       if (labelProperty) {
@@ -65,5 +65,7 @@ export default Ember.Component.extend({
         selection: selection
       });
     });
+
+    return Ember.A(checkboxes);
   })
 });

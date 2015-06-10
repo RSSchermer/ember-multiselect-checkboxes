@@ -7,35 +7,35 @@ var Person = Ember.Object.extend({
 });
 
 export default Ember.Controller.extend({
-  fruits: ["apple", "banana", "orange"],
+  fruits: Ember.A(["apple", "banana", "orange"]),
 
-  selectedFruits: [],
+  selectedFruits: Ember.A(),
 
-  cars: [
+  cars: Ember.A([
     { make: "BMW", color: "black"},
     { make: "Ferari", color: "red"},
     { make: "Volvo", color: "blue"}
-  ],
+  ]),
 
-  selectedCars: [],
+  selectedCars: Ember.A(),
 
-  persons: [
+  persons: Ember.A([
     Person.create({ name: "Lisa", gender: "Female" }),
     Person.create({ name: "Bob", gender: "Male" }),
     Person.create({ name: "John", gender: "Male"})
-  ],
+  ]),
 
-  selectedPersons: [],
+  selectedPersons: Ember.A(),
 
   personsDisabled: false,
 
   actions: {
     selectAllPersons: function() {
-      this.set("selectedPersons", this.get('persons').copy());
+      this.set("selectedPersons", Ember.A(this.get('persons').copy()));
     },
 
     clearPersons: function() {
-      this.set("selectedPersons", []);
+      this.set("selectedPersons", Ember.A());
     },
 
     toggleDisabled: function() {
