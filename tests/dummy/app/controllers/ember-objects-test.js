@@ -7,18 +7,6 @@ var Person = Ember.Object.extend({
 });
 
 export default Ember.Controller.extend({
-  fruits: Ember.A(["apple", "banana", "orange"]),
-
-  selectedFruits: Ember.A(),
-
-  cars: Ember.A([
-    { make: "BMW", color: "black"},
-    { make: "Ferari", color: "red"},
-    { make: "Volvo", color: "blue"}
-  ]),
-
-  selectedCars: Ember.A(),
-
   persons: Ember.A([
     Person.create({ name: "Lisa", gender: "Female" }),
     Person.create({ name: "Bob", gender: "Male" }),

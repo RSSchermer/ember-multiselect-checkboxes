@@ -1,0 +1,11 @@
+<h2>Test with array of plain js objects</h2>
+
+<p>{{multiselect-checkboxes options=cars selection=selectedCars labelProperty="make"}}</p>
+
+<p>Selected cars:
+  <ul>
+    {{#each selectedCars as |car|}}
+      <li>make: {{car.make}}, color: {{car.color}}</li>
+    {{/each}}
+  </ul>
+</p>

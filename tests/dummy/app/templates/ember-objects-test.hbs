@@ -1,0 +1,17 @@
+<h2>Test with array of Ember objects</h2>
+
+<p>{{multiselect-checkboxes options=persons selection=selectedPersons labelProperty="name" disabled=personsDisabled}}</p>
+
+<p>
+  <a href="#" {{action "selectAllPersons"}}>Select all</a>
+  <a href="#" {{action "clearPersons"}}>Clear all</a>
+  <a href="#" {{action "toggleDisabled"}}>Toggle Enabled/Disabled</a>
+</p>
+
+<p>Selected persons:
+  <ul>
+    {{#each selectedPersons as |person|}}
+      <li>name: {{person.name}}, gender: {{person.gender}}</li>
+    {{/each}}
+  </ul>
+</p>
