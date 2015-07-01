@@ -1,5 +1,27 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.4.0
+
+It's now possible to pass a custom template block should you want to customize the option list is some way. The
+following example without a template block:
+
+```handlebars
+{{multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers}}
+```
+
+Is equivalent to this example with a template block:
+
+```handlebars
+{{#multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers as |label isSelected|}}
+  <li>
+    <label>
+      {{input type="checkbox" checked=isSelected}}
+      {{label}}
+    </label>
+  </li>
+{{/multiselect-checkboxes}}
+```
+
 ## 0.3.0
 
 Adds `valueProperty` option. This option can be used to change how plain js objects or Ember js objects are represented

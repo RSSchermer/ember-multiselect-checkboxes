@@ -1,0 +1,11 @@
+<h2>Test with array of primitives</h2>
+
+<p>{{multiselect-checkboxes options=fruits selection=selectedFruits}}</p>
+
+<p>Selected fruits:
+  <ul>
+    {{#each selectedFruits as |fruit|}}
+      <li>{{fruit}}</li>
+    {{/each}}
+  </ul>
+</p>

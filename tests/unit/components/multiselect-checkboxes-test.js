@@ -4,15 +4,7 @@ import Ember from 'ember';
 
 var App;
 
-moduleForComponent('multiselect-checkboxes', 'MultiselectCheckboxesComponent', {
-  beforeEach: function () {
-    App = startApp();
-  },
-
-  afterEach: function () {
-    Ember.run(App, 'destroy');
-  }
-});
+moduleForComponent('multiselect-checkboxes');
 
 var fruits = Ember.A(['apple', 'orange', 'strawberry']);
 
@@ -37,7 +29,7 @@ var persons = Ember.A([
 test('uses the correct labels with primitive values and no label property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({ 'options': fruits, 'selection': Ember.A() });
   });
 
@@ -53,7 +45,7 @@ test('uses the correct labels with primitive values and no label property', func
 test('uses the correct labels with plain js values and a label property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({ 'options': cars, 'selection': Ember.A(), 'labelProperty': 'make' });
   });
 
@@ -69,7 +61,7 @@ test('uses the correct labels with plain js values and a label property', functi
 test('uses the correct labels with Ember object values and a label property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({ 'options': persons, 'selection': Ember.A(), 'labelProperty': 'name' });
   });
 
@@ -85,7 +77,7 @@ test('uses the correct labels with Ember object values and a label property', fu
 test('checks the checkboxes that represent a value currently in the selection', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({
       'options': persons,
       'selection': Ember.A([persons[0], persons[2]]),
@@ -105,7 +97,7 @@ test('checks the checkboxes that represent a value currently in the selection', 
 test('adds the value a checkbox represents to the selection when that checkbox is checked', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({ 'options': persons, 'selection': Ember.A([persons[0]]), 'labelProperty': 'name' });
   });
 
@@ -122,7 +114,7 @@ test('adds the value a checkbox represents to the selection when that checkbox i
 test('removes the value a checkbox represents from the selection when that checkbox is unchecked', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({ 'options': persons, 'selection': Ember.A([persons[0]]), 'labelProperty': 'name' });
   });
 
@@ -139,7 +131,7 @@ test('removes the value a checkbox represents from the selection when that check
 test('checks the correct options with plain js values and a value property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({
       'options': cars,
       'selection': Ember.A(['red']),
@@ -160,7 +152,7 @@ test('checks the correct options with plain js values and a value property', fun
 test('updates the selection correctly with plain js values and a value property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({
       'options': cars,
       'selection': Ember.A(['red']),
@@ -183,7 +175,7 @@ test('updates the selection correctly with plain js values and a value property'
 test('checks the correct options with Ember object values and a value property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({
       'options': persons,
       'selection': Ember.A(['Bob']),
@@ -204,7 +196,7 @@ test('checks the correct options with Ember object values and a value property',
 test('updates the selection correctly with Ember object values and a value property', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({
       'options': persons,
       'selection': Ember.A(['Bob']),
@@ -227,7 +219,7 @@ test('updates the selection correctly with Ember object values and a value prope
 test('disables all checkboxes when disabled is set to true', function (assert) {
   var component = this.subject();
 
-  Ember.run(function(){
+  Ember.run(function () {
     component.setProperties({
       'options': persons,
       'selection': Ember.A([persons[0]]),
