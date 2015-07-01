@@ -18,6 +18,21 @@ Example:
 {{multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers}}
 ```
 
+It's also possible to pass a custom template block should you want to customize the option list in some way. The above
+example without a custom template block is essentially equivalent to the following example with a custom template
+block:
+
+```handlebars
+{{#multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers as |label isSelected|}}
+  <li>
+    <label>
+      {{input type="checkbox" checked=checkbox.isSelected}}
+      {{checkbox.label}}
+    </label>
+  </li>
+{{/multiselect-checkboxes}}
+```
+
 This component can be used with an array of primitives as the options, an array of plain javascript objects as the
 options, or an array of Ember objects as the options. The following properties are available and should always be set:
 
