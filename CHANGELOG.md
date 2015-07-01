@@ -2,6 +2,8 @@
 
 ## 0.4.0
 
+This release requires Ember 1.13 or newer.
+
 It's now possible to pass a custom template block should you want to customize the option list is some way. The
 following example without a template block:
 
