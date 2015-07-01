@@ -26,8 +26,8 @@ block:
 {{#multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers as |label isSelected|}}
   <li>
     <label>
-      {{input type="checkbox" checked=checkbox.isSelected}}
-      {{checkbox.label}}
+      {{input type="checkbox" checked=isSelected}}
+      {{label}}
     </label>
   </li>
 {{/multiselect-checkboxes}}
