@@ -4,15 +4,7 @@ import Ember from 'ember';
 
 var App;
 
-moduleForComponent('multiselect-checkboxes', 'MultiselectCheckboxesComponent', {
-  beforeEach: function () {
-    App = startApp();
-  },
-
-  afterEach: function () {
-    Ember.run(App, 'destroy');
-  }
-});
+moduleForComponent('multiselect-checkboxes');
 
 var fruits = Ember.A(['apple', 'orange', 'strawberry']);
 
