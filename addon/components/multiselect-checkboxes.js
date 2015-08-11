@@ -1,8 +1,11 @@
 import Ember from 'ember';
 
 var Checkbox = Ember.Object.extend({
-  isSelected: Ember.computed('value', 'selection', function (_, checked) {
-    if (arguments.length > 1) {
+  isSelected: Ember.computed('value', 'selection', {
+    get() {
+      return this.get('selection').contains(this.get('value'));
+    },
+    set(_, checked) {
       var selected = this.get('selection').contains(this.get('value'));
 
       if (checked && !selected) {
@@ -10,9 +13,9 @@ var Checkbox = Ember.Object.extend({
       } else if (!checked && selected) {
         this.get('selection').removeObject(this.get('value'));
       }
-    }
 
-    return this.get('selection').contains(this.get('value'));
+      return checked;
+    }
   })
 });
 
