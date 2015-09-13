@@ -3,36 +3,35 @@ import Ember from 'ember';
 
 moduleForComponent('multiselect-checkboxes');
 
-var fruits = Ember.A(['apple', 'orange', 'strawberry']);
+let fruits = Ember.A(['apple', 'orange', 'strawberry']);
 
-var cars = Ember.A([
+let cars = Ember.A([
   { make: "BMW", color: "black"},
   { make: "Ferari", color: "red"},
   { make: "Volvo", color: "blue"}
 ]);
 
-var Person = Ember.Object.extend({
+let Person = Ember.Object.extend({
   name: null,
 
   gender: null
 });
 
-var persons = Ember.A([
+let persons = Ember.A([
   Person.create({ name: "Lisa", gender: "Female" }),
   Person.create({ name: "Bob", gender: "Male" }),
   Person.create({ name: "John", gender: "Male"})
 ]);
 
 test('uses the correct labels with primitive values and no label property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({ 'options': fruits, 'selection': Ember.A() });
-  });
+  Ember.run(() => component.setProperties({
+    'options': fruits,
+    'selection': Ember.A()
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   assert.equal($(labels[0]).text().trim(), 'apple');
   assert.equal($(labels[1]).text().trim(), 'orange');
@@ -40,15 +39,15 @@ test('uses the correct labels with primitive values and no label property', func
 });
 
 test('uses the correct labels with plain js values and a label property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({ 'options': cars, 'selection': Ember.A(), 'labelProperty': 'make' });
-  });
+  Ember.run(() => component.setProperties({
+    'options': cars,
+    'selection': Ember.A(),
+    'labelProperty': 'make'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   assert.equal($(labels[0]).text().trim(), 'BMW');
   assert.equal($(labels[1]).text().trim(), 'Ferari');
@@ -56,15 +55,15 @@ test('uses the correct labels with plain js values and a label property', functi
 });
 
 test('uses the correct labels with Ember object values and a label property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({ 'options': persons, 'selection': Ember.A(), 'labelProperty': 'name' });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A(),
+    'labelProperty': 'name'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   assert.equal($(labels[0]).text().trim(), 'Lisa');
   assert.equal($(labels[1]).text().trim(), 'Bob');
@@ -72,19 +71,15 @@ test('uses the correct labels with Ember object values and a label property', fu
 });
 
 test('checks the checkboxes that represent a value currently in the selection', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({
-      'options': persons,
-      'selection': Ember.A([persons[0], persons[2]]),
-      'labelProperty': 'name'
-    });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A([persons[0], persons[2]]),
+    'labelProperty': 'name'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), true);
   assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), false);
@@ -92,15 +87,15 @@ test('checks the checkboxes that represent a value currently in the selection', 
 });
 
 test('adds the value a checkbox represents to the selection when that checkbox is checked', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({ 'options': persons, 'selection': Ember.A([persons[0]]), 'labelProperty': 'name' });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A([persons[0]]),
+    'labelProperty': 'name'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   $(labels[2]).find('input[type="checkbox"]').click();
 
@@ -109,15 +104,15 @@ test('adds the value a checkbox represents to the selection when that checkbox i
 });
 
 test('removes the value a checkbox represents from the selection when that checkbox is unchecked', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({ 'options': persons, 'selection': Ember.A([persons[0]]), 'labelProperty': 'name' });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A([persons[0]]),
+    'labelProperty': 'name'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   $(labels[0]).find('input[type="checkbox"]').click();
 
@@ -126,20 +121,16 @@ test('removes the value a checkbox represents from the selection when that check
 });
 
 test('checks the correct options with plain js values and a value property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({
-      'options': cars,
-      'selection': Ember.A(['red']),
-      'labelProperty': 'make',
-      'valueProperty': 'color'
-    });
-  });
+  Ember.run(() => component.setProperties({
+    'options': cars,
+    'selection': Ember.A(['red']),
+    'labelProperty': 'make',
+    'valueProperty': 'color'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), false);
   assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), true);
@@ -147,20 +138,16 @@ test('checks the correct options with plain js values and a value property', fun
 });
 
 test('updates the selection correctly with plain js values and a value property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({
-      'options': cars,
-      'selection': Ember.A(['red']),
-      'labelProperty': 'make',
-      'valueProperty': 'color'
-    });
-  });
+  Ember.run(() => component.setProperties({
+    'options': cars,
+    'selection': Ember.A(['red']),
+    'labelProperty': 'make',
+    'valueProperty': 'color'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   $(labels[0]).find('input[type="checkbox"]').click();
 
@@ -170,20 +157,16 @@ test('updates the selection correctly with plain js values and a value property'
 });
 
 test('checks the correct options with Ember object values and a value property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({
-      'options': persons,
-      'selection': Ember.A(['Bob']),
-      'labelProperty': 'name',
-      'valueProperty': 'name'
-    });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A(['Bob']),
+    'labelProperty': 'name',
+    'valueProperty': 'name'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), false);
   assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), true);
@@ -191,20 +174,16 @@ test('checks the correct options with Ember object values and a value property',
 });
 
 test('updates the selection correctly with Ember object values and a value property', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({
-      'options': persons,
-      'selection': Ember.A(['Bob']),
-      'labelProperty': 'name',
-      'valueProperty': 'name'
-    });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A(['Bob']),
+    'labelProperty': 'name',
+    'valueProperty': 'name'
+  }));
 
-  var $component = this.$();
-
-  var labels = $component.find('label');
+  let labels = this.$().find('label');
 
   $(labels[0]).find('input[type="checkbox"]').click();
 
@@ -214,24 +193,22 @@ test('updates the selection correctly with Ember object values and a value prope
 });
 
 test('disables all checkboxes when disabled is set to true', function (assert) {
-  var component = this.subject();
+  let component = this.subject();
 
-  Ember.run(function () {
-    component.setProperties({
-      'options': persons,
-      'selection': Ember.A([persons[0]]),
-      'labelProperty': 'name',
-      'disabled': true
-    });
-  });
+  Ember.run(() => component.setProperties({
+    'options': persons,
+    'selection': Ember.A([persons[0]]),
+    'labelProperty': 'name',
+    'disabled': true
+  }));
 
-  var $component = this.$();
+  let $component = this.$();
 
-  $component.find('input[type="checkbox"]').each(function (index, checkbox) {
+  $component.find('input[type="checkbox"]').each((index, checkbox) => {
     assert.equal($(checkbox).prop('disabled'), true);
   });
 
-  $component.find('input[type="checkbox"]').each(function (index, checkbox) {
+  $component.find('input[type="checkbox"]').each((index, checkbox) => {
     $(checkbox).click();
   });
 

@@ -2,14 +2,14 @@ import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 import Ember from 'ember';
 
-var App;
+let App;
 
 module('Block params integration tests', {
-  beforeEach: function() {
+  beforeEach() {
     App = startApp();
   },
 
-  afterEach: function() {
+  afterEach() {
     Ember.run(App, 'destroy');
   }
 });
@@ -17,8 +17,8 @@ module('Block params integration tests', {
 test('it displays the correct custom labels for each person', function (assert) {
   visit('/block-params-test');
 
-  andThen(function () {
-    var labels = Ember.$('#person_checkboxes').find('label');
+  andThen(() => {
+    let labels = Ember.$('#person_checkboxes').find('label');
 
     assert.equal($(labels[0]).text().trim(), '--Lisa--');
     assert.equal($(labels[1]).text().trim(), '--Bob--');
@@ -31,8 +31,8 @@ test('adds the value a checkbox represents to the selection when that checkbox i
 
   click('#person_checkboxes input[type="checkbox"]:eq(1)');
 
-  andThen(function () {
-    var selectedPersonsListText = $('#selected_persons_list').text();
+  andThen(() => {
+    let selectedPersonsListText = $('#selected_persons_list').text();
 
     assert.equal(selectedPersonsListText.indexOf('Bob') >= 0, true);
     assert.equal(selectedPersonsListText.indexOf('Lisa') >= 0, false);

@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
-var Checkbox = Ember.Object.extend({
+let Checkbox = Ember.Object.extend({
   isSelected: Ember.computed('value', 'selection', {
     get() {
       return this.get('selection').contains(this.get('value'));
     },
+
     set(_, checked) {
-      var selected = this.get('selection').contains(this.get('value'));
+      let selected = this.get('selection').contains(this.get('value'));
 
       if (checked && !selected) {
         this.get('selection').addObject(this.get('value'));
@@ -35,12 +36,12 @@ export default Ember.Component.extend({
   disabled: false,
 
   checkboxes: Ember.computed('options', 'labelProperty', 'valueProperty', 'selection', function () {
-    var labelProperty = this.get('labelProperty');
-    var valueProperty = this.get('valueProperty');
-    var selection = this.get('selection');
+    let labelProperty = this.get('labelProperty');
+    let valueProperty = this.get('valueProperty');
+    let selection = this.get('selection');
 
-    var checkboxes = this.get('options').map((option) => {
-      var label, value;
+    let checkboxes = this.get('options').map((option) => {
+      let label, value;
 
       if (labelProperty) {
         if (typeof option.get === 'function') {
