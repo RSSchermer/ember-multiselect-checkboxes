@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
 
   actions: {
     selectAllPersons: function() {
-      this.set("selectedPersons", Ember.A(this.get('persons').copy()));
+      this.set("selectedPersons", Ember.A(this.get('persons').slice()));
     },
 
     clearPersons: function() {
