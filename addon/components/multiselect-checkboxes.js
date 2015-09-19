@@ -38,7 +38,7 @@ export default Ember.Component.extend({
   checkboxes: Ember.computed('options', 'labelProperty', 'valueProperty', 'selection', function () {
     let labelProperty = this.get('labelProperty');
     let valueProperty = this.get('valueProperty');
-    let selection = this.get('selection');
+    let selection = Ember.A(this.get('selection'));
 
     let checkboxes = this.get('options').map((option) => {
       let label, value;

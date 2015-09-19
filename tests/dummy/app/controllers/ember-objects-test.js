@@ -7,23 +7,23 @@ var Person = Ember.Object.extend({
 });
 
 export default Ember.Controller.extend({
-  persons: Ember.A([
+  persons: [
     Person.create({ name: "Lisa", gender: "Female" }),
     Person.create({ name: "Bob", gender: "Male" }),
     Person.create({ name: "John", gender: "Male"})
-  ]),
+  ],
 
-  selectedPersons: Ember.A(),
+  selectedPersons: [],
 
   personsDisabled: false,
 
   actions: {
     selectAllPersons: function() {
-      this.set("selectedPersons", Ember.A(this.get('persons').slice()));
+      this.set("selectedPersons", this.get('persons').slice());
     },
 
     clearPersons: function() {
-      this.set("selectedPersons", Ember.A());
+      this.set("selectedPersons", []);
     },
 
     toggleDisabled: function() {

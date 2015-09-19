@@ -7,11 +7,11 @@ var Person = Ember.Object.extend({
 });
 
 export default Ember.Controller.extend({
-  persons: Ember.A([
+  persons: [
     Person.create({ name: "Lisa", gender: "Female" }),
     Person.create({ name: "Bob", gender: "Male" }),
     Person.create({ name: "John", gender: "Male"})
-  ]),
+  ],
 
-  selectedPersons: Ember.A()
+  selectedPersons: []
 });
