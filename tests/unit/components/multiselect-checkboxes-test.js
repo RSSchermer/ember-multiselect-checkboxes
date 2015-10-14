@@ -36,6 +36,13 @@ test('uses the correct labels with primitive values and no label property', func
   assert.equal($(labels[0]).text().trim(), 'apple');
   assert.equal($(labels[1]).text().trim(), 'orange');
   assert.equal($(labels[2]).text().trim(), 'strawberry');
+
+  Ember.run(() => fruits.reverseObjects());
+  labels = this.$().find('label');
+  assert.equal($(labels[0]).text().trim(), 'strawberry');
+  assert.equal($(labels[1]).text().trim(), 'orange');
+  assert.equal($(labels[2]).text().trim(), 'apple');
+
 });
 
 test('uses the correct labels with plain js values and a label property', function (assert) {
@@ -72,10 +79,11 @@ test('uses the correct labels with Ember object values and a label property', fu
 
 test('checks the checkboxes that represent a value currently in the selection', function (assert) {
   let component = this.subject();
+  let selection = Ember.A([persons[0], persons[2]]);
 
   Ember.run(() => component.setProperties({
     'options': persons,
-    'selection': Ember.A([persons[0], persons[2]]),
+    'selection': selection,
     'labelProperty': 'name'
   }));
 
@@ -84,6 +92,14 @@ test('checks the checkboxes that represent a value currently in the selection', 
   assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), true);
   assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), false);
   assert.equal($(labels[2]).find('input[type="checkbox"]').prop('checked'), true);
+
+  Ember.run(() => selection.removeObject(persons[0]));
+
+  labels = this.$().find('label');
+  assert.equal($(labels[0]).find('input[type="checkbox"]').prop('checked'), false);
+  assert.equal($(labels[1]).find('input[type="checkbox"]').prop('checked'), false);
+  assert.equal($(labels[2]).find('input[type="checkbox"]').prop('checked'), true);
+
 });
 
 test('adds the value a checkbox represents to the selection when that checkbox is checked', function (assert) {
