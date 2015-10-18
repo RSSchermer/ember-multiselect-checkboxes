@@ -1,5 +1,11 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.5.0
+
+Thanks to @techthumb, the options and checkboxes should now properly update when updating the bound options array or the
+bound selection array externally. Also adds the value as an optional third block param that can be used in a custom
+template block for displaying options.
+
 ## 0.4.0
 
 This release requires Ember 1.13 or newer.

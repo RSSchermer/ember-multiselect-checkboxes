@@ -39,11 +39,12 @@ the `valueProperty` attribute:
   as their "color" property, the selection will be an array of color strings (not an array of cars).
 
 It's also possible to pass a custom template block should you want to customize the option list in some way (requires
-Ember 1.13 or higher). The above example without a custom template block is essentially equivalent to the following
-example with a custom template block:
+Ember 1.13 or higher). This template block will receive 3 block parameters: the label, whether or not the option is
+selected, and the value associated with the option. The above example without a custom template block is essentially
+equivalent to the following example with a custom template block:
 
 ```handlebars
-{{#multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers as |label isSelected|}}
+{{#multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers as |label isSelected value|}}
   <li>
     <label>
       {{input type="checkbox" checked=isSelected}}
