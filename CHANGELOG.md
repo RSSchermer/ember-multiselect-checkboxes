@@ -1,5 +1,44 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.6.0
+
+BC break:
+
+As suggested by @nadnoslen, passing the option itself as a block param to a custom template block should allow more
+flexibility than passing the label and option value. In previous versions, a custom template block received 3 block
+parameters: the option label, a boolean value indicating whether or not the option is selected, and the option value. As
+of this version, a custom template block now receives 2 parameters: the option itself and a boolean value indicating
+whether or not the option is selected.
+
+The following is an example of the old version with a custom template block:
+
+```handlebars
+{{#multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers as |label isSelected value|}}
+  <li>
+    <label>
+      {{input type="checkbox" checked=isSelected}}
+      {{label}}
+    </label>
+  </li>
+{{/multiselect-checkboxes}}
+```
+
+This should now be replaced with the following:
+
+```handlebars
+{{#multiselect-checkboxes options=users selection=selectedUsers as |user isSelected|}}
+  <li>
+    <label>
+      {{input type="checkbox" checked=isSelected}}
+      {{user.name}}
+    </label>
+  </li>
+{{/multiselect-checkboxes}}
+```
+
+Note that the `labelProperty` attribute is now superfluous when using a custom template block; instead, `{{user.name}}`
+is referenced directly in the template block.
+
 ## 0.5.0
 
 Thanks to @techthumb, the options and checkboxes should now properly update when updating the bound options array or the
