@@ -64,6 +64,7 @@ export default Ember.Component.extend({
       }
 
       return Checkbox.create({
+        option: option,
         label: label,
         value: value,
         selection: selection

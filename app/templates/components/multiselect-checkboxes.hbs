@@ -1,6 +1,6 @@
 {{#each checkboxes as |checkbox|}}
   {{#if hasBlock}}
-    {{yield checkbox.label checkbox.isSelected checkbox.value}}
+    {{yield checkbox.option checkbox.isSelected}}
   {{else}}
     <li>
       <label>

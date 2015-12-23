@@ -1,10 +1,10 @@
 <h1>Block Params Test</h1>
 
-{{#multiselect-checkboxes id="person_checkboxes" options=persons selection=selectedPersons labelProperty="name" as |label isSelected|}}
+{{#multiselect-checkboxes id="person_checkboxes" options=persons selection=selectedPersons as |person isSelected|}}
   <li>
     <label>
       {{input type="checkbox" checked=isSelected}}
-      --{{label}}--
+      --{{person.name}}--
     </label>
   </li>
 {{/multiselect-checkboxes}}
