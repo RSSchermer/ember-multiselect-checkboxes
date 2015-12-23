@@ -53,3 +53,12 @@ equivalent to the following example with a custom template block:
   </li>
 {{/multiselect-checkboxes}}
 ```
+
+By default the `multiselect-checkboxes` tag will render as an `ul` element. This can be customized by specifying the
+`tagName` attribute:
+
+```handlebars
+{{#multiselect-checkboxes tagName='div' ...}}
+  ...
+{{/multiselect-checkboxes}}
+```
