@@ -10,6 +10,7 @@ Router.map(function () {
   this.route('plainObjectsTest', { path: '/plain-objects-test' });
   this.route('emberObjectsTest', { path: '/ember-objects-test' });
   this.route('blockParamsTest', { path: '/block-params-test' });
+  this.route('longOptionListTest', { path: '/long-option-list-test' });
 });
 
 export default Router;

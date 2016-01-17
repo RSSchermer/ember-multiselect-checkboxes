@@ -1,0 +1,13 @@
+<h2>Test with long option list</h2>
+
+<p>Selected options:
+  <ul>
+    {{#each selectedOptions as |selectedOption|}}
+      <li>{{selectedOption}}</li>
+    {{/each}}
+  </ul>
+</p>
+
+<p>
+  {{multiselect-checkboxes options=options selection=selectedOptions}}
+</p>
