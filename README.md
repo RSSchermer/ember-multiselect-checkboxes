@@ -1,7 +1,7 @@
 # Ember-multiselect-checkboxes [![](https://travis-ci.org/RSSchermer/ember-multiselect-checkboxes.svg?branch=master)](https://travis-ci.org/RSSchermer/ember-multiselect-checkboxes)
 
-Simple Ember component for allowing multiple selection from a certain collection (a `hasMany` property
-for example) using checkboxes.
+Simple Ember component for allowing multiple selection from a certain collection (a `hasMany` property for example)
+using checkboxes.
 
 ## Demo
 Demo available [here](https://rsschermer.github.io/ember-multiselect-checkboxes/).
@@ -19,7 +19,7 @@ Example:
 ```
 
 This component can be used with an array of primitives as the options, an array of plain javascript objects as the
-options, or an array of Ember objects as the options. The following properties are available and should always be set:
+options, or an array of Ember objects as the options. The following attributes should always be set:
 
 * `options`: a collection of Ember objects that can be selected.
 * `selection`: the subset of the options that is currently selected. The selection will automatically be updated when
@@ -38,9 +38,50 @@ the `valueProperty` attribute:
   object in the selection. Example: when using an array of car objects as the options, if you set the `valueProperty`
   as their "color" property, the selection will be an array of color strings (not an array of cars).
 
+An action can be bound to the `onchange` attribute:
+
+```handlebars
+{{multiselect-checkboxes
+    options=users
+    labelProperty='name'
+    selection=selectedUsers
+    onchange=(action 'updateSelection')}}
+```
+
+When a checkbox is checked or unchecked, this action will be triggered and it will receive the new selection as a
+parameter.
+
+By default, the component will update the value bound to the `selection` attribute automatically. If you prefer to
+update the value bound to the `selection` attribute yourself, this can be disabled by setting the `updateSelectionValue`
+attribute to `false`:
+
+```handlebars
+{{multiselect-checkboxes
+    options=users
+    labelProperty='name'
+    selection=selectedUsers
+    onchange=(action 'updateSelection')
+    updateSelectionValue=false}}
+```
+
+You should then update the value bound to the `selection` property in the action bound to `onchange`, e.g.:
+
+```js
+actions: {
+  updateSelection: function (newSelection) {
+    this.set('selection', newSelection);
+
+    ...
+  }
+}
+```
+
+Note that for long option lists, allowing the component to automatically update the value bound to the `selection`
+attribute may significantly improve performance.
+
 It's also possible to pass a custom template block should you want to customize the option list in some way (requires
 Ember 1.13 or newer). This template block will receive 2 block parameters: the option itself and a boolean value
-indicating whether or not the option is selected. The above example without a custom template block is essentially
+indicating whether or not the option is selected. The initial example without a custom template block is essentially
 equivalent to the following example with a custom template block:
 
 ```handlebars
