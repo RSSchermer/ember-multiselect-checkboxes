@@ -1,5 +1,48 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.7.0
+
+Added `onchange` attribute. An action can be bound to the `onchange` attribute:
+
+```handlebars
+{{multiselect-checkboxes
+    options=users
+    labelProperty='name'
+    selection=selectedUsers
+    onchange=(action 'updateSelection')}}
+```
+
+When a checkbox is checked or unchecked, this action will be triggered and it will receive the new selection as a
+parameter.
+
+Added `updateSelectionValue` attribute. By default, the component will update the value bound to the `selection`
+attribute automatically. If you prefer to update the value bound to the `selection` attribute yourself, this can be
+disabled by setting the `updateSelectionValue` attribute to `false`:
+
+```handlebars
+{{multiselect-checkboxes
+    options=users
+    labelProperty='name'
+    selection=selectedUsers
+    onchange=(action 'updateSelection')
+    updateSelectionValue=false}}
+```
+
+You should then update the value bound to the `selection` property in the action bound to `onchange`, e.g.:
+
+```js
+actions: {
+  updateSelection: function (newSelection) {
+    this.set('selection', newSelection);
+
+    ...
+  }
+}
+```
+
+Note that for long option lists, allowing the component to automatically update the value bound to the `selection`
+attribute may result in significantly better performance.
+
 ## 0.6.0
 
 BC break:
