@@ -127,6 +127,44 @@ test('removes the value a checkbox represents from the selection when that check
   assert.equal(this.get('selection').contains(persons[0]), false);
 });
 
+test('triggers the onchange action with the new selection when the selection changes', function (assert) {
+  this.setProperties({
+    'options': persons,
+    'selection': Ember.A(),
+    'actions.updateSelection': (newSelection) => {
+      assert.equal(newSelection.length, 1);
+      assert.equal(newSelection.contains(persons[1]), true);
+    }
+  });
+
+  this.render(hbs`
+    {{multiselect-checkboxes options=options labelProperty='name' selection=selection onchange=(action 'updateSelection')}}
+  `);
+
+  let checkboxes = this.$('input[type="checkbox"]');
+
+  $(checkboxes[1]).click();
+});
+
+test('does not update the bound selection value when updateSelectionValue is set to false', function (assert) {
+  this.setProperties({
+    'options': persons,
+    'selection': Ember.A([persons[0]])
+  });
+
+  this.render(hbs`
+    {{multiselect-checkboxes options=options labelProperty='name' selection=selection updateSelectionValue=false}}
+  `);
+
+  let checkboxes = this.$('input[type="checkbox"]');
+
+  $(checkboxes[1]).click();
+
+  assert.equal(this.get('selection.length'), 1);
+  assert.equal(this.get('selection').contains(persons[0]), true);
+  assert.equal(this.get('selection').contains(persons[1]), false);
+});
+
 test('checks the correct options with plain js values and a value property', function (assert) {
   this.setProperties({
     'options': cars,

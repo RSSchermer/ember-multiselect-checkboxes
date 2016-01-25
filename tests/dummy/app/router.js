@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('emberObjectsTest', { path: '/ember-objects-test' });
   this.route('blockParamsTest', { path: '/block-params-test' });
   this.route('longOptionListTest', { path: '/long-option-list-test' });
+  this.route('immutabilityTest', { path: '/immutability-test' });
 });
 
 export default Router;

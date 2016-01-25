@@ -1,0 +1,30 @@
+<h2>Test with an immutable array of Ember objects</h2>
+
+{{multiselect-checkboxes
+    options=persons
+    selection=activeSelection
+    labelProperty="name"
+    updateSelectionValue=false
+    onchange=(action 'updateSelection')}}
+
+<p>Active selection:
+  <ul>
+    {{#each activeSelection as |person|}}
+      <li>name: {{person.name}}, gender: {{person.gender}}</li>
+    {{/each}}
+  </ul>
+</p>
+
+<p>Selection history:
+  <ol>
+    {{#each selectionHistory as |selectionState|}}
+      <li>
+        <ul>
+          {{#each selectionState as |person|}}
+            <li>name: {{person.name}}, gender: {{person.gender}}</li>
+          {{/each}}
+        </ul>
+      </li>
+    {{/each}}
+  </ol>
+</p>

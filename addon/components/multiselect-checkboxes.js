@@ -7,15 +7,41 @@ let Checkbox = Ember.Object.extend({
     },
 
     set(_, checked) {
-      let selected = this.get('selection').contains(this.get('value'));
+      let selection = this.get('selection');
+      let selected = selection.contains(this.get('value'));
+      let onchange = this.get('onchange');
+      let updateSelectionValue = this.get('updateSelectionValue');
+      let isMutable = typeof selection.addObject === 'function' && typeof selection.removeObject === 'function';
 
-      if (checked && !selected) {
-        this.get('selection').addObject(this.get('value'));
-      } else if (!checked && selected) {
-        this.get('selection').removeObject(this.get('value'));
+      // Dispatch onchange event to handler with updated selection if handler is specified
+      if (onchange) {
+        let updated = Ember.A(selection.slice());
+
+        if (checked && !selected) {
+          updated.addObject(this.get('value'));
+        } else if (!checked && selected) {
+          updated.removeObject(this.get('value'));
+        }
+
+        onchange(updated);
       }
 
-      return checked;
+      // Mutate selection if updateSelectionValue is true and selection is mutable
+      if (updateSelectionValue !== false && isMutable) {
+        if (checked && !selected) {
+          selection.addObject(this.get('value'));
+        } else if (!checked && selected) {
+          selection.removeObject(this.get('value'));
+        }
+
+        return checked;
+      } else {
+
+        // Only change the checked status of the checkbox when selection is mutated, because if
+        // it is not mutated and the onchange handler does not update the bound selection value the
+        // displayed checkboxes would be out of sync with bound selection value.
+        return !checked;
+      }
     }
   })
 });
@@ -25,22 +51,15 @@ export default Ember.Component.extend({
 
   tagName: 'ul',
 
-  options: Ember.A(),
-
-  selection: Ember.A(),
-
-  labelProperty: null,
-
-  valueProperty: null,
-
-  disabled: false,
-
   checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', function () {
     let labelProperty = this.get('labelProperty');
     let valueProperty = this.get('valueProperty');
     let selection = Ember.A(this.get('selection'));
+    let onchange = this.get('onchange');
+    let updateSelectionValue = this.get('updateSelectionValue') !== undefined ? this.get('updateSelectionValue') : true;
+    let options = Ember.A(this.get('options'));
 
-    let checkboxes = this.get('options').map((option) => {
+    let checkboxes = options.map((option) => {
       let label, value;
 
       if (labelProperty) {
@@ -67,7 +86,9 @@ export default Ember.Component.extend({
         option: option,
         label: label,
         value: value,
-        selection: selection
+        selection: selection,
+        onchange: onchange,
+        updateSelectionValue: updateSelectionValue
       });
     });
 
