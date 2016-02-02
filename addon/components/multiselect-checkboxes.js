@@ -75,7 +75,7 @@ export default Ember.Component.extend({
         label = String(option);
       }
 
-      if (translate && label) {
+      if (translate && label && this.get('i18n')) {
         label = this.get('i18n').t(label);
       }
 
