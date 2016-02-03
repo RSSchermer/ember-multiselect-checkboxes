@@ -1,5 +1,18 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.8.0
+
+Added `translate` attribute. If `translate` is set to true and the [Ember-i18n addon](https://www.npmjs.com/package/ember-i18n)
+is installed, then the labels will be used as keys for translation lookup and the translations are displayed instead.
+
+```handlebars
+{{multiselect-checkboxes
+    options=users
+    labelProperty='name'
+    selection=selectedUsers
+    translate=true}}}
+```
+
 ## 0.7.0
 
 Added `onchange` attribute. An action can be bound to the `onchange` attribute:
