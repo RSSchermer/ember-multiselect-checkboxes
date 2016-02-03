@@ -51,13 +51,16 @@ export default Ember.Component.extend({
 
   tagName: 'ul',
 
-  checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', function () {
+  i18n: Ember.inject.service('i18n'),
+
+  checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', 'translate', function () {
     let labelProperty = this.get('labelProperty');
     let valueProperty = this.get('valueProperty');
     let selection = Ember.A(this.get('selection'));
     let onchange = this.get('onchange');
     let updateSelectionValue = this.get('updateSelectionValue') !== undefined ? this.get('updateSelectionValue') : true;
     let options = Ember.A(this.get('options'));
+    let translate = this.get('translate');
 
     let checkboxes = options.map((option) => {
       let label, value;
@@ -70,6 +73,10 @@ export default Ember.Component.extend({
         }
       } else {
         label = String(option);
+      }
+
+      if (translate && label && this.get('i18n')) {
+        label = this.get('i18n').t(label);
       }
 
       if (valueProperty) {

@@ -54,6 +54,34 @@ test('uses the correct labels with plain js values and a label property', functi
   assert.equal($(labels[2]).text().trim(), 'Volvo');
 });
 
+test('labels are translated when translate is true and i18n addon is present', function (assert) {
+  this.set('options', persons);
+
+  this.render(hbs`
+    {{multiselect-checkboxes options=options labelProperty='name' translate=true}}
+  `);
+
+  let labels = this.$('label');
+
+  assert.equal($(labels[0]).text().trim(), 'Luisa');
+  assert.equal($(labels[1]).text().trim(), 'Roberto');
+  assert.equal($(labels[2]).text().trim(), 'Juan');
+});
+
+test('labels are not translated when translate is true and i18n addon is not present', function (assert) {
+  this.set('options', persons);
+
+  this.render(hbs`
+    {{multiselect-checkboxes options=options labelProperty='name' translate=true i18n=null}}
+  `);
+
+  let labels = this.$('label');
+
+  assert.equal($(labels[0]).text().trim(), 'Lisa');
+  assert.equal($(labels[1]).text().trim(), 'Bob');
+  assert.equal($(labels[2]).text().trim(), 'John');
+});
+
 test('uses the correct labels with Ember object values and a label property', function (assert) {
   this.set('options', persons);
 

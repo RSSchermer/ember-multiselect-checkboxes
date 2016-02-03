@@ -29,7 +29,15 @@ When using this component with an array of javascript objects or an array of Emb
 `labelProperty` attribute:
 
 * `labelProperty`: the property on the plain javascript object or the Ember object that will be used as a label for the
-  checkbox.
+  checkbox.  By default this property will render as plain text.  If translation is desired, set `translate` to true.
+  
+```handlebars
+{{multiselect-checkboxes
+    options=users
+    labelProperty='name'
+    selection=selectedUsers
+    translate=true}}}
+```
 
 When using this component with an array of javascript objects or an array of Ember objects you may optionally specify
 the `valueProperty` attribute:
