@@ -16,14 +16,17 @@ let Checkbox = Ember.Object.extend({
       // Dispatch onchange event to handler with updated selection if handler is specified
       if (onchange) {
         let updated = Ember.A(selection.slice());
+        let operation;
 
         if (checked && !selected) {
+          operation = 'added';
           updated.addObject(this.get('value'));
         } else if (!checked && selected) {
+          operation = 'removed';
           updated.removeObject(this.get('value'));
         }
 
-        onchange(updated);
+        onchange(updated, this.get('value'), operation);
       }
 
       // Mutate selection if updateSelectionValue is true and selection is mutable
