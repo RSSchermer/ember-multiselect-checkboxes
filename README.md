@@ -76,13 +76,19 @@ You should then update the value bound to the `selection` property in the action
 
 ```js
 actions: {
-  updateSelection: function (newSelection) {
+  updateSelection: function (newSelection, value, operation) {
     this.set('selection', newSelection);
 
     ...
   }
 }
 ```
+
+The params passed to the onchange action consist of:
+
+* `newSelection`: the subset of the options that is currently selected.
+* `value`: the corresponding value of the latest checkbox checked/unchecked.
+* `operation`: the operation of unchecking/checking a checkbox, there is two possible values, 'added' when checking a checkbox and 'removed' when unchecking a checkbox.
 
 Note that for long option lists, allowing the component to automatically update the value bound to the `selection`
 attribute may result in significantly better performance.
