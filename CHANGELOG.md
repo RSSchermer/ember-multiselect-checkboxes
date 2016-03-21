@@ -1,5 +1,23 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.9.0
+
+Action handlers bound to the `onchange` attribute now receive additional parameters. Previously only the updated
+selection was passed to the handler. It now receives 3 parameters:
+
+* `newSelection`: the subset of the options that is currently selected.
+* `value`: the corresponding value of the checkbox that was checked or unchecked.
+* `operation`: a string describing the operation performed on the selection. There are two possible values: 'added' when
+  the value was added to the selection and 'removed' when the value was removed from the selection.
+
+```js
+actions: {
+  updateSelection: function (newSelection, value, operation) {
+    ...
+  }
+}
+```
+
 ## 0.8.0
 
 Added `translate` attribute. If `translate` is set to true and the [Ember-i18n addon](https://www.npmjs.com/package/ember-i18n)
