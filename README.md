@@ -30,7 +30,7 @@ When using this component with an array of javascript objects or an array of Emb
 
 * `labelProperty`: the property on the plain javascript object or the Ember object that will be used as a label for the
   checkbox.  By default this property will render as plain text.  If translation is desired, set `translate` to true.
-  
+
 ```handlebars
 {{multiselect-checkboxes
     options=users
@@ -56,8 +56,21 @@ An action can be bound to the `onchange` attribute:
     onchange=(action 'updateSelection')}}
 ```
 
-When a checkbox is checked or unchecked, this action will be triggered and it will receive the new selection as a
-parameter.
+When a checkbox is checked or unchecked, this action will be triggered. The action handler will receive the following
+parameters:
+
+* `newSelection`: the subset of the options that is currently selected.
+* `value`: the corresponding value of the checkbox that was checked or unchecked.
+* `operation`: a string describing the operation performed on the selection. There are two possible values: 'added' when
+  the value was added to the selection and 'removed' when the value was removed from the selection.
+
+```js
+actions: {
+  updateSelection: function (newSelection, value, operation) {
+    ...
+  }
+}
+```
 
 By default, the component will update the value bound to the `selection` attribute automatically. If you prefer to
 update the value bound to the `selection` attribute yourself, this can be disabled by setting the `updateSelectionValue`
@@ -83,12 +96,6 @@ actions: {
   }
 }
 ```
-
-The params passed to the onchange action consist of:
-
-* `newSelection`: the subset of the options that is currently selected.
-* `value`: the corresponding value of the latest checkbox checked/unchecked.
-* `operation`: the operation of unchecking/checking a checkbox, there is two possible values, 'added' when checking a checkbox and 'removed' when unchecking a checkbox.
 
 Note that for long option lists, allowing the component to automatically update the value bound to the `selection`
 attribute may result in significantly better performance.
