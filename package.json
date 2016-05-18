@@ -1,6 +1,6 @@
 {
   "name": "ember-multiselect-checkboxes",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "directories": {
     "doc": "doc",
     "test": "tests"
