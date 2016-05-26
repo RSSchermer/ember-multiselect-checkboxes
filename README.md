@@ -46,6 +46,9 @@ the `valueProperty` attribute:
   object in the selection. Example: when using an array of car objects as the options, if you set the `valueProperty`
   as their "color" property, the selection will be an array of color strings (not an array of cars).
 
+[This controller for the demo application](https://github.com/RSSchermer/ember-multiselect-checkboxes/blob/gh-pages/demo-app/app/controllers/application.js)
+provides an example of what your controller code could look like for each type of options collection.
+
 An action can be bound to the `onchange` attribute:
 
 ```handlebars
