@@ -104,9 +104,17 @@ Note that for long option lists, allowing the component to automatically update 
 attribute may result in significantly better performance.
 
 It's also possible to pass a custom template block should you want to customize the option list in some way (requires
-Ember 1.13 or newer). This template block will receive 2 block parameters: the option itself and a boolean value
-indicating whether or not the option is selected. The initial example without a custom template block is essentially
-equivalent to the following example with a custom template block:
+Ember 1.13 or newer). This template block will receive 3 block parameters: the option itself, a boolean value indicating
+whether or not the option is selected, and the option's index:
+
+```handlebars
+{{#multiselect-checkboxes options=users selection=selectedUsers as |user isSelected index|}}
+  <!-- Your custom option template here -->
+{{/multiselect-checkboxes}}
+```
+
+The initial example without a custom template block is essentially equivalent to the following example with a custom
+template block:
 
 ```handlebars
 {{#multiselect-checkboxes options=users selection=selectedUsers as |user isSelected|}}
