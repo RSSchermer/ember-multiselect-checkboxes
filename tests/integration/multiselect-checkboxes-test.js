@@ -155,13 +155,17 @@ test('removes the value a checkbox represents from the selection when that check
   assert.equal(this.get('selection').contains(persons[0]), false);
 });
 
-test('triggers the onchange action with the new selection when the selection changes', function (assert) {
+test('triggers the onchange action with the correct arguments when the selection changes', function (assert) {
   this.setProperties({
     'options': persons,
     'selection': Ember.A(),
-    'actions.updateSelection': (newSelection) => {
-      assert.equal(newSelection.length, 1);
-      assert.equal(newSelection.contains(persons[1]), true);
+    'actions': {
+      updateSelection: (newSelection, value, operation) => {
+        assert.equal(newSelection.length, 1);
+        assert.equal(newSelection.contains(persons[1]), true);
+        assert.equal(value, persons[1]);
+        assert.equal(operation, 'added');
+      }
     }
   });
 
