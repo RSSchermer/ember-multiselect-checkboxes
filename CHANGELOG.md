@@ -1,5 +1,15 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.10.0
+
+A custom template block new receives the index of an option as a third parameter:
+
+```handlebars
+{{#multiselect-checkboxes options=users selection=selectedUsers as |user isSelected index|}}
+  ...
+{{/multiselect-checkboxes}}
+```
+
 ## 0.9.0
 
 Action handlers bound to the `onchange` attribute now receive additional parameters. Previously only the updated
