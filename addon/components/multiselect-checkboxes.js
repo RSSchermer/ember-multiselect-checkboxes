@@ -3,12 +3,12 @@ import Ember from 'ember';
 let Checkbox = Ember.Object.extend({
   isSelected: Ember.computed('value', 'selection.[]', {
     get() {
-      return this.get('selection').contains(this.get('value'));
+      return this.get('selection').includes(this.get('value'));
     },
 
     set(_, checked) {
       let selection = this.get('selection');
-      let selected = selection.contains(this.get('value'));
+      let selected = selection.includes(this.get('value'));
       let onchange = this.get('onchange');
       let updateSelectionValue = this.get('updateSelectionValue');
       let isMutable = typeof selection.addObject === 'function' && typeof selection.removeObject === 'function';
