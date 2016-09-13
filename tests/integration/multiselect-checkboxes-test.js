@@ -131,7 +131,7 @@ test('adds the value a checkbox represents to the selection when that checkbox i
 
   assert.equal($(checkboxes[2]).prop('checked'), true);
   assert.equal(this.get('selection.length'), 2);
-  assert.equal(this.get('selection').contains(persons[2]), true);
+  assert.equal(this.get('selection').includes(persons[2]), true);
 });
 
 test('removes the value a checkbox represents from the selection when that checkbox is unchecked', function (assert) {
@@ -152,7 +152,7 @@ test('removes the value a checkbox represents from the selection when that check
 
   assert.equal($(checkboxes[0]).prop('checked'), false);
   assert.equal(this.get('selection.length'), 0);
-  assert.equal(this.get('selection').contains(persons[0]), false);
+  assert.equal(this.get('selection').includes(persons[0]), false);
 });
 
 test('triggers the onchange action with the correct arguments when the selection changes', function (assert) {
@@ -162,7 +162,7 @@ test('triggers the onchange action with the correct arguments when the selection
     'actions': {
       updateSelection: (newSelection, value, operation) => {
         assert.equal(newSelection.length, 1);
-        assert.equal(newSelection.contains(persons[1]), true);
+        assert.equal(newSelection.includes(persons[1]), true);
         assert.equal(value, persons[1]);
         assert.equal(operation, 'added');
       }
@@ -193,8 +193,8 @@ test('does not update the bound selection value when updateSelectionValue is set
   $(checkboxes[1]).click();
 
   assert.equal(this.get('selection.length'), 1);
-  assert.equal(this.get('selection').contains(persons[0]), true);
-  assert.equal(this.get('selection').contains(persons[1]), false);
+  assert.equal(this.get('selection').includes(persons[0]), true);
+  assert.equal(this.get('selection').includes(persons[1]), false);
 });
 
 test('checks the correct options with plain js values and a value property', function (assert) {
@@ -232,8 +232,8 @@ test('updates the selection correctly with plain js values and a value property'
 
   assert.equal($(checkboxes[0]).prop('checked'), true);
   assert.equal(this.get('selection.length'), 2);
-  assert.equal(this.get('selection').contains('black'), true);
-  assert.equal(this.get('selection').contains('red'), true);
+  assert.equal(this.get('selection').includes('black'), true);
+  assert.equal(this.get('selection').includes('red'), true);
 });
 
 test('checks the correct options with Ember object values and a value property', function (assert) {
@@ -272,8 +272,8 @@ test('updates the selection correctly with Ember object values and a value prope
   assert.equal($(checkboxes[0]).prop('checked'), true);
 
   assert.equal(this.get('selection.length'), 2);
-  assert.equal(this.get('selection').contains('Lisa'), true);
-  assert.equal(this.get('selection').contains('Bob'), true);
+  assert.equal(this.get('selection').includes('Lisa'), true);
+  assert.equal(this.get('selection').includes('Bob'), true);
 });
 
 test('disables all checkboxes when disabled is set to true', function (assert) {
@@ -297,7 +297,7 @@ test('disables all checkboxes when disabled is set to true', function (assert) {
   });
 
   assert.equal(this.get('selection.length'), 1);
-  assert.equal(this.get('selection').contains(persons[0]), true);
+  assert.equal(this.get('selection').includes(persons[0]), true);
 });
 
 test('updates the displayed options when the bound options change', function (assert) {
@@ -395,5 +395,5 @@ test('with a template block adds the value a checkbox represents to the selectio
 
   assert.equal($(checkboxes[2]).prop('checked'), true);
   assert.equal(this.get('selection.length'), 1);
-  assert.equal(this.get('selection').contains(persons[2]), true);
+  assert.equal(this.get('selection').includes(persons[2]), true);
 });
