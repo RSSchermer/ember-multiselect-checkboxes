@@ -36,7 +36,7 @@ When using this component with an array of javascript objects or an array of Emb
     options=users
     labelProperty='name'
     selection=selectedUsers
-    translate=true}}}
+    translate=true}}
 ```
 
 When using this component with an array of javascript objects or an array of Ember objects you may optionally specify
