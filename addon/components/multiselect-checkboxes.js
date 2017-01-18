@@ -54,7 +54,9 @@ export default Ember.Component.extend({
 
   tagName: 'ul',
 
-  i18n: Ember.inject.service('i18n'),
+  i18n: Ember.computed(function () {
+    return Ember.getOwner(this).lookup('service:i18n');
+  }),
 
   checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', 'translate', function () {
     let labelProperty = this.get('labelProperty');

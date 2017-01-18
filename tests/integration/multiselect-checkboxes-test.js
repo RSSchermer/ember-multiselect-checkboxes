@@ -1,6 +1,7 @@
 import hbs from 'htmlbars-inline-precompile';
 import { test, moduleForComponent } from 'ember-qunit';
 import Ember from 'ember';
+import { has } from 'require';
 
 moduleForComponent('multiselect-checkboxes', 'Multiselect checkboxes component', {
   integration: true
@@ -54,19 +55,21 @@ test('uses the correct labels with plain js values and a label property', functi
   assert.equal($(labels[2]).text().trim(), 'Volvo');
 });
 
-test('labels are translated when translate is true and i18n addon is present', function (assert) {
-  this.set('options', persons);
+if(has('ember-i18n')) {
+  test('labels are translated when translate is true and i18n addon is present', function (assert) {
+    this.set('options', persons);
 
-  this.render(hbs`
-    {{multiselect-checkboxes options=options labelProperty='name' translate=true}}
-  `);
+    this.render(hbs`
+      {{multiselect-checkboxes options=options labelProperty='name' translate=true}}
+    `);
 
-  let labels = this.$('label');
+    let labels = this.$('label');
 
-  assert.equal($(labels[0]).text().trim(), 'Luisa');
-  assert.equal($(labels[1]).text().trim(), 'Roberto');
-  assert.equal($(labels[2]).text().trim(), 'Juan');
-});
+    assert.equal($(labels[0]).text().trim(), 'Luisa');
+    assert.equal($(labels[1]).text().trim(), 'Roberto');
+    assert.equal($(labels[2]).text().trim(), 'Juan');
+  });
+}
 
 test('labels are not translated when translate is true and i18n addon is not present', function (assert) {
   this.set('options', persons);
