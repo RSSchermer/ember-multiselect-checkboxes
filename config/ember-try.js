@@ -30,6 +30,22 @@ module.exports = {
       }
     },
     {
+      name: 'ember-release-without-i18n',
+      bower: {
+        dependencies: {
+          'ember': 'components/ember#release'
+        },
+        resolutions: {
+          'ember': 'release'
+        }
+      },
+      npm: {
+        devDependencies: {
+          'ember-i18n': null
+        }
+      },
+    },
+    {
       name: 'ember-beta',
       bower: {
         dependencies: {
@@ -50,6 +66,22 @@ module.exports = {
           'ember': 'canary'
         }
       }
+    },
+    {
+      name: 'ember-canary-without-i18n',
+      bower: {
+        dependencies: {
+          'ember': 'components/ember#canary'
+        },
+        resolutions: {
+          'ember': 'canary'
+        }
+      },
+      npm: {
+        devDependencies: {
+          'ember-i18n': null
+        }
+      },
     }
   ]
 };

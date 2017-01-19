@@ -15,11 +15,14 @@ env:
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-release-without-i18n
+  - EMBER_TRY_SCENARIO=ember-canary-without-i18n
 
 matrix:
   fast_finish: true
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-canary-without-i18n
 
 before_install:
   - npm config set spin false
