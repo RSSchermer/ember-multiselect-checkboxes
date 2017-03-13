@@ -45,7 +45,7 @@
 
   <section>
     <h2>Array of Ember objects</h2>
-    
+
     <p>This example uses an array of ember objects as the selection options, with 'name' specified as the
       label property:
     </p>
@@ -60,4 +60,26 @@
       </ul>
     </p>
   </section>
+
+  <section>
+    <h2>Select/Unselect all</h2>
+
+    <p>This example uses a plain javascript array as the selection options, "Select all/Unselect all feature":
+    </p>
+
+    <p>{{multiselect-checkboxes options=phones selection=selectedPhones}}</p>
+
+    <p>Select/Unselect all:
+        {{multiselect-checkboxes options=controls selection=selectedControls onchange=(action 'updateSelection')}}
+    </p>
+
+    <p>Selected phones:
+      <ul>
+        {{#each phone in selectedPhones}}
+          <li>{{phone}}</li>
+        {{/each}}
+      </ul>
+    </p>
+  </section>
+
 </article>

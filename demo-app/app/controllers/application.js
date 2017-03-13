@@ -25,5 +25,24 @@ export default Ember.Controller.extend({
     Person.create({ name: "John", gender: "Male"})
   ],
 
-  selectedPersons: []
+  selectedPersons: [],
+
+  phones: ['apple', 'samsung', 'nokia'],
+
+  selectedPhones: [],
+
+  controls: ['Select All', 'Unselect All'],
+
+  selectedControls: [],
+
+  actions: {
+    updateSelection: function (newSelection, value, operation) {
+      this.set('selection', newSelection);
+      if (value === 'Select All') {
+        this.set('selectedPhones', this.get('phones').copy());
+      }else if (value === 'Unselect All') {
+        this.set('selectedPhones', []);
+      }
+    }
+  }
 });
