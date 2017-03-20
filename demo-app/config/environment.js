@@ -4,7 +4,6 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'multiselect-checkboxes-demo-app',
     environment: environment,
-    baseURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
       'default-src': "'none'",
