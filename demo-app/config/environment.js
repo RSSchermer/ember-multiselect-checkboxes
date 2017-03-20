@@ -47,7 +47,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = 'ember-multiselect-checkboxes';
+    ENV.rootURL = 'https://rsschermer.github.io/ember-multiselect-checkboxes/';
   }
 
   return ENV;
