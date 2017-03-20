@@ -313,6 +313,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("multiselect-checkboxes-demo-app/app")["default"].create({"name":"multiselect-checkboxes-demo-app","version":"0.0.0+d614b010"});
+  require("multiselect-checkboxes-demo-app/app")["default"].create({"name":"multiselect-checkboxes-demo-app","version":"0.0.0+cb9182eb"});
 }
 //# sourceMappingURL=multiselect-checkboxes-demo-app.map
