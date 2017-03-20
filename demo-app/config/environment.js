@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'multiselect-checkboxes-demo-app',
     environment: environment,
+    rootURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -47,7 +48,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.locationType = 'hash';
+    ENV.locationType = 'none';
     // ENV.baseURL = 'https://rsschermer.github.io/ember-multiselect-checkboxes/';
   }
 
