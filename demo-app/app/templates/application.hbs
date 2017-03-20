@@ -69,8 +69,9 @@
 
     <p>{{multiselect-checkboxes options=phones selection=selectedPhones}}</p>
 
-    <p>Select/Unselect all:
-        {{multiselect-checkboxes options=controls selection=selectedControls onchange=(action 'updateSelection')}}
+    <p>
+      <button {{action 'selectAllPhones'}}>Select all</button>
+      <button {{action 'deselectAllPhones'}}>Deselect all</button>
     </p>
 
     <p>Selected phones:
