@@ -9,7 +9,7 @@ var Person = Ember.Object.extend({
 export default Ember.Controller.extend({
   fruits: ["apple", "banana", "orange"],
 
-  selectedFruits: [],
+  selectedFruits: Ember.A(),
 
   cars: [
     { make: "BMW", color: "black"},
@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
     { make: "Volvo", color: "blue"}
   ],
 
-  selectedCars: [],
+  selectedCars: Ember.A(),
 
   persons: [
     Person.create({ name: "Lisa", gender: "Female" }),
@@ -25,11 +25,11 @@ export default Ember.Controller.extend({
     Person.create({ name: "John", gender: "Male"})
   ],
 
-  selectedPersons: [],
+  selectedPersons: Ember.A(),
 
-  phones: ['apple', 'samsung', 'nokia'],
+  phones: ['Apple', 'Samsung', 'Nokia'],
 
-  selectedPhones: [],
+  selectedPhones: Ember.A(),
 
   actions: {
     selectAllPhones: function () {
