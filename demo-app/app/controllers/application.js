@@ -25,5 +25,19 @@ export default Ember.Controller.extend({
     Person.create({ name: "John", gender: "Male"})
   ],
 
-  selectedPersons: []
+  selectedPersons: [],
+
+  phones: ['apple', 'samsung', 'nokia'],
+
+  selectedPhones: [],
+
+  actions: {
+    selectAllPhones: function () {
+      this.set('selectedPhones', this.get('phones').copy());
+    },
+
+    deselectAllPhones: function () {
+      this.set('selectedPhones', []);
+    }
+  }
 });
