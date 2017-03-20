@@ -47,7 +47,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/ember-multiselect-checkboxes';
+    ENV.baseURL = '/ember-multiselect-checkboxes';
   }
 
   return ENV;
