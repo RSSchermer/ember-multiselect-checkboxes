@@ -58,7 +58,7 @@ export default Ember.Component.extend({
     return Ember.getOwner(this).lookup('service:i18n');
   }),
 
-  checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', 'translate', function () {
+  checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', 'translate', 'i18n.locale', function () {
     let labelProperty = this.get('labelProperty');
     let valueProperty = this.get('valueProperty');
     let selection = Ember.A(this.get('selection'));

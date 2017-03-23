@@ -69,6 +69,22 @@ if(has('ember-i18n')) {
     assert.equal($(labels[1]).text().trim(), 'Roberto');
     assert.equal($(labels[2]).text().trim(), 'Juan');
   });
+
+  test('labels are translated correctly when translate is true and i18n addon is present after switching locale', function (assert) {
+    this.set('options', persons);
+
+    this.render(hbs`
+      {{multiselect-checkboxes options=options labelProperty='name' translate=true}}
+    `);
+
+    Ember.run(() => this.container.lookup('service:i18n').set('locale', 'fr'));
+
+    let labels = this.$('label');
+
+    assert.equal($(labels[0]).text().trim(), 'Louise');
+    assert.equal($(labels[1]).text().trim(), 'Robert');
+    assert.equal($(labels[2]).text().trim(), 'Jean');
+  });
 }
 
 test('labels are not translated when translate is true and i18n addon is not present', function (assert) {
