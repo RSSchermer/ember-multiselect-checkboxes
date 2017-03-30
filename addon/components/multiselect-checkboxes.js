@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import layout from '../templates/components/multiselect-checkboxes';
 
 let Checkbox = Ember.Object.extend({
   isSelected: Ember.computed('value', 'selection.[]', {
@@ -50,6 +51,7 @@ let Checkbox = Ember.Object.extend({
 });
 
 export default Ember.Component.extend({
+  layout,
   classNames: ['multiselect-checkboxes'],
 
   tagName: 'ul',
