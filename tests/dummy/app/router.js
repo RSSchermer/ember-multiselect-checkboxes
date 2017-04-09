@@ -13,6 +13,7 @@ Router.map(function () {
   this.route('blockParamsTest', { path: '/block-params-test' });
   this.route('longOptionListTest', { path: '/long-option-list-test' });
   this.route('immutabilityTest', { path: '/immutability-test' });
+  this.route('promiseLabelsTest', { path: '/promise-labels-test' });
 });
 
 export default Router;

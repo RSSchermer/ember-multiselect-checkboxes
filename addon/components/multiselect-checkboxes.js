@@ -2,6 +2,14 @@ import Ember from 'ember';
 import layout from '../templates/components/multiselect-checkboxes';
 
 let Checkbox = Ember.Object.extend({
+  init() {
+    let label = this.get('label');
+
+    if (typeof label.then === 'function') {
+      label.then((value) => this.set('label', value));
+    }
+  },
+
   isSelected: Ember.computed('value', 'selection.[]', {
     get() {
       return this.get('selection').includes(this.get('value'));
