@@ -5,7 +5,7 @@ let Checkbox = Ember.Object.extend({
   init() {
     let label = this.get('label');
 
-    if (typeof label.then === 'function') {
+    if (label && typeof label.then === 'function') {
       label.then((value) => this.set('label', value));
     }
   },
