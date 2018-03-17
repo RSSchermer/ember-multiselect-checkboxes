@@ -1,5 +1,9 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.11.0
+
+Upgraded for Ember 3, no changes to the public API.
+
 ## 0.10.0
 
 A custom template block new receives the index of an option as a third parameter:
