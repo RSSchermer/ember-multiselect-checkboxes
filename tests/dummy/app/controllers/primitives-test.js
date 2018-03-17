@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  fruits: ["apple", "banana", "orange"],
-
-  selectedFruits: []
+export default Controller.extend({
+  init() {
+    this._super(...arguments);
+    this.fruits = ["apple", "banana", "orange"];
+    this.selectedFruits = [];
+  }
 });

@@ -1,21 +1,24 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Controller from '@ember/controller';
+import { A } from '@ember/array';
 
-let Person = Ember.Object.extend({
+let Person = EmberObject.extend({
   name: null,
 
   gender: null
 });
 
-export default Ember.Controller.extend({
-  persons: Ember.A([
-    Person.create({ name: "Lisa", gender: "Female" }),
-    Person.create({ name: "Bob", gender: "Male" }),
-    Person.create({ name: "John", gender: "Male"})
-  ]),
-
-  activeSelection: Ember.A(),
-
-  selectionHistory: Ember.A(),
+export default Controller.extend({
+  init() {
+    this._super(...arguments);
+    this.persons = A([
+      Person.create({ name: "Lisa", gender: "Female" }),
+      Person.create({ name: "Bob", gender: "Male" }),
+      Person.create({ name: "John", gender: "Male"})
+    ]);
+    this.activeSelection = A();
+    this.selectionHistory = A();
+  },
 
   actions: {
     updateSelection: function (newSelection) {

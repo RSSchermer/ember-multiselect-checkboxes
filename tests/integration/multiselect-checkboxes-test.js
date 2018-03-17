@@ -1,27 +1,30 @@
 import hbs from 'htmlbars-inline-precompile';
 import { test, moduleForComponent } from 'ember-qunit';
-import Ember from 'ember';
 import { has } from 'require';
+import { A } from '@ember/array';
+import Object from '@ember/object';
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 
 moduleForComponent('multiselect-checkboxes', 'Multiselect checkboxes component', {
   integration: true
 });
 
-let fruits = Ember.A(['apple', 'orange', 'strawberry']);
+let fruits = A(['apple', 'orange', 'strawberry']);
 
-let cars = Ember.A([
+let cars = A([
   { make: "BMW", color: "black"},
   { make: "Ferari", color: "red"},
   { make: "Volvo", color: "blue"}
 ]);
 
-let Person = Ember.Object.extend({
+let Person = Object.extend({
   name: null,
 
   gender: null
 });
 
-let persons = Ember.A([
+let persons = A([
   Person.create({ name: "Lisa", gender: "Female" }),
   Person.create({ name: "Bob", gender: "Male" }),
   Person.create({ name: "John", gender: "Male"})
@@ -77,7 +80,7 @@ if(has('ember-i18n')) {
       {{multiselect-checkboxes options=options labelProperty='name' translate=true}}
     `);
 
-    Ember.run(() => this.container.lookup('service:i18n').set('locale', 'fr'));
+    run(() => this.container.lookup('service:i18n').set('locale', 'fr'));
 
     let labels = this.$('label');
 
@@ -118,7 +121,7 @@ test('uses the correct labels with Ember object values and a label property', fu
 test('checks the checkboxes that represent a value currently in the selection', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A([persons[0], persons[2]])
+    'selection': A([persons[0], persons[2]])
   });
 
   this.render(hbs`
@@ -135,7 +138,7 @@ test('checks the checkboxes that represent a value currently in the selection', 
 test('adds the value a checkbox represents to the selection when that checkbox is checked', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A([persons[0]])
+    'selection': A([persons[0]])
   });
 
   this.render(hbs`
@@ -156,7 +159,7 @@ test('adds the value a checkbox represents to the selection when that checkbox i
 test('removes the value a checkbox represents from the selection when that checkbox is unchecked', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A([persons[0]])
+    'selection': A([persons[0]])
   });
 
   this.render(hbs`
@@ -177,7 +180,7 @@ test('removes the value a checkbox represents from the selection when that check
 test('triggers the onchange action with the correct arguments when the selection changes', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A(),
+    'selection': A(),
     'actions': {
       updateSelection: (newSelection, value, operation) => {
         assert.equal(newSelection.length, 1);
@@ -200,7 +203,7 @@ test('triggers the onchange action with the correct arguments when the selection
 test('does not update the bound selection value when updateSelectionValue is set to false', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A([persons[0]])
+    'selection': A([persons[0]])
   });
 
   this.render(hbs`
@@ -219,7 +222,7 @@ test('does not update the bound selection value when updateSelectionValue is set
 test('checks the correct options with plain js values and a value property', function (assert) {
   this.setProperties({
     'options': cars,
-    'selection': Ember.A(['red'])
+    'selection': A(['red'])
   });
 
   this.render(hbs`
@@ -236,7 +239,7 @@ test('checks the correct options with plain js values and a value property', fun
 test('updates the selection correctly with plain js values and a value property', function (assert) {
   this.setProperties({
     'options': cars,
-    'selection': Ember.A(['red'])
+    'selection': A(['red'])
   });
 
   this.render(hbs`
@@ -258,7 +261,7 @@ test('updates the selection correctly with plain js values and a value property'
 test('checks the correct options with Ember object values and a value property', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A(['Bob'])
+    'selection': A(['Bob'])
   });
 
   this.render(hbs`
@@ -275,7 +278,7 @@ test('checks the correct options with Ember object values and a value property',
 test('updates the selection correctly with Ember object values and a value property', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A(['Bob'])
+    'selection': A(['Bob'])
   });
 
   this.render(hbs`
@@ -298,7 +301,7 @@ test('updates the selection correctly with Ember object values and a value prope
 test('disables all checkboxes when disabled is set to true', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A([persons[0]])
+    'selection': A([persons[0]])
   });
 
   this.render(hbs`
@@ -332,7 +335,7 @@ test('updates the displayed options when the bound options change', function (as
   assert.equal($(labels[1]).text().trim(), 'orange');
   assert.equal($(labels[2]).text().trim(), 'strawberry');
 
-  Ember.run(() => fruits.reverseObjects());
+  run(() => fruits.reverseObjects());
 
   labels = this.$('label');
 
@@ -342,7 +345,7 @@ test('updates the displayed options when the bound options change', function (as
 });
 
 test('updates checkboxes when the bound selection changes', function (assert) {
-  let selection = Ember.A([persons[0], persons[2]]);
+  let selection = A([persons[0], persons[2]]);
 
   this.setProperties({
     'options': persons,
@@ -359,7 +362,7 @@ test('updates checkboxes when the bound selection changes', function (assert) {
   assert.equal($(checkboxes[1]).prop('checked'), false);
   assert.equal($(checkboxes[2]).prop('checked'), true);
 
-  Ember.run(() => selection.removeObject(persons[0]));
+  run(() => selection.removeObject(persons[0]));
 
   checkboxes = this.$('input[type="checkbox"]');
 
@@ -392,7 +395,7 @@ test('with a template block displays the correct custom labels for each person',
 test('with a template block adds the value a checkbox represents to the selection when that checkbox is checked', function (assert) {
   this.setProperties({
     'options': persons,
-    'selection': Ember.A()
+    'selection': A()
   });
 
   this.render(hbs`

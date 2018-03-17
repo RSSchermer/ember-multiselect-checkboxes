@@ -1,8 +1,12 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
 import layout from '../templates/components/multiselect-checkboxes';
 
-let Checkbox = Ember.Object.extend({
-  isSelected: Ember.computed('value', 'selection.[]', {
+let Checkbox = EmberObject.extend({
+  isSelected: computed('value', 'selection.[]', {
     get() {
       return this.get('selection').includes(this.get('value'));
     },
@@ -16,7 +20,7 @@ let Checkbox = Ember.Object.extend({
 
       // Dispatch onchange event to handler with updated selection if handler is specified
       if (onchange) {
-        let updated = Ember.A(selection.slice());
+        let updated = A(selection.slice());
         let operation;
 
         if (checked && !selected) {
@@ -50,23 +54,23 @@ let Checkbox = Ember.Object.extend({
   })
 });
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['multiselect-checkboxes'],
 
   tagName: 'ul',
 
-  i18n: Ember.computed(function () {
-    return Ember.getOwner(this).lookup('service:i18n');
+  i18n: computed(function () {
+    return getOwner(this).lookup('service:i18n');
   }),
 
-  checkboxes: Ember.computed('options.[]', 'labelProperty', 'valueProperty', 'selection', 'translate', 'i18n.locale', function () {
+  checkboxes: computed('options.[]', 'labelProperty', 'valueProperty', 'selection', 'translate', 'i18n.locale', function () {
     let labelProperty = this.get('labelProperty');
     let valueProperty = this.get('valueProperty');
-    let selection = Ember.A(this.get('selection'));
+    let selection = A(this.get('selection'));
     let onchange = this.get('onchange');
     let updateSelectionValue = this.get('updateSelectionValue') !== undefined ? this.get('updateSelectionValue') : true;
-    let options = Ember.A(this.get('options'));
+    let options = A(this.get('options'));
     let translate = this.get('translate');
 
     let checkboxes = options.map((option) => {
@@ -106,6 +110,6 @@ export default Ember.Component.extend({
       });
     });
 
-    return Ember.A(checkboxes);
+    return A(checkboxes);
   })
 });

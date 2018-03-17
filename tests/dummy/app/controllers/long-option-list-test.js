@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { A } from '@ember/array';
 
 let options = [];
 
@@ -6,8 +7,10 @@ for (let i = 0; i < 1000; i++) {
   options.push(i);
 }
 
-export default Ember.Controller.extend({
-  options: Ember.A(options),
-
-  selectedOptions: Ember.A()
+export default Controller.extend({
+  init() {
+    this._super(...arguments);
+    this.options = A(options);
+    this.selectedOptions = A();
+  }
 });
