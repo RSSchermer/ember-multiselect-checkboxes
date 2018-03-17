@@ -26,8 +26,10 @@ env:
     - EMBER_TRY_SCENARIO=ember-lts-2.16
     - EMBER_TRY_SCENARIO=ember-lts-2.18
     - EMBER_TRY_SCENARIO=ember-release
+    - EMBER_TRY_SCENARIO=ember-release-without-i18n
     - EMBER_TRY_SCENARIO=ember-beta
     - EMBER_TRY_SCENARIO=ember-canary
+    - EMBER_TRY_SCENARIO=ember-canary-without-i18n
     - EMBER_TRY_SCENARIO=ember-default
 
 matrix:
