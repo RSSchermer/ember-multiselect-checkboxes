@@ -1,5 +1,5 @@
 {{#each checkboxes as |checkbox index|}}
-  {{#if hasBlock}}
+  {{#if (has-block)}}
     {{yield checkbox.option checkbox.isSelected index}}
   {{else}}
     <li>
