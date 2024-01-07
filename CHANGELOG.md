@@ -1,5 +1,9 @@
 # Ember-multiselect-checkboxes change log
 
+## 0.12.0
+
+Upgraded for Ember 3.28.
+
 ## 0.11.0
 
 Upgraded for Ember 3, no changes to the public API.

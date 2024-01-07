@@ -1,6 +1,6 @@
 {
   "name": "ember-multiselect-checkboxes",
-  "version": "0.11.1",
+  "version": "0.12.0",
   "description": "Simple Ember component for allowing multiple selection from a certain collection (a hasMany property for example) using checkboxes.",
   "keywords": [
     "ember-addon",
@@ -55,7 +55,7 @@
     "ember-page-title": "^6.2.2",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
-    "ember-source": "~3.28.8",
+    "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/release/shas/e12dbe8fd866777275b633f1f108e09352d9509d.tgz",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^3.15.0",
     "ember-try": "^1.4.0",
