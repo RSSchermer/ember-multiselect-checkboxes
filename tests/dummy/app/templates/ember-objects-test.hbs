@@ -1,6 +1,6 @@
 <h2>Test with array of Ember objects</h2>
 
-<p>{{multiselect-checkboxes options=persons selection=selectedPersons labelProperty="name" disabled=personsDisabled}}</p>
+<p><Multiselect-checkboxes @options={{this.persons}} @selection={{this.selectedPersons}} @labelProperty="name" @disabled={{this.personsDisabled}}/></p>
 
 <p>
   <a href="#" {{action "selectAllPersons"}}>Select all</a>
@@ -10,7 +10,7 @@
 
 <p>Selected persons:
   <ul>
-    {{#each selectedPersons as |person|}}
+    {{#each this.selectedPersons as |person|}}
       <li>name: {{person.name}}, gender: {{person.gender}}</li>
     {{/each}}
   </ul>

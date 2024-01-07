@@ -15,7 +15,7 @@ Demo available [here](https://rsschermer.github.io/ember-multiselect-checkboxes/
 Example:
 
 ``` handlebars
-{{multiselect-checkboxes options=users labelProperty='name' selection=selectedUsers}}
+<Multiselect-checkboxes @options={{this.users}} @labelProperty='name' @selection={{this.selectedUsers}}/>
 ```
 
 This component can be used with an array of primitives as the options, an array of plain javascript objects as the
@@ -32,11 +32,11 @@ When using this component with an array of javascript objects or an array of Emb
   checkbox.  By default this property will render as plain text.  If translation is desired, set `translate` to true.
 
 ```handlebars
-{{multiselect-checkboxes
-    options=users
-    labelProperty='name'
-    selection=selectedUsers
-    translate=true}}
+<Multiselect-checkboxes
+    @options={{this.users}}
+    @labelProperty='name'
+    @selection={{this.selectedUsers}}
+    @translate={{true}}/>
 ```
 
 When using this component with an array of javascript objects or an array of Ember objects you may optionally specify
@@ -52,11 +52,11 @@ provides an example of what your controller code could look like for each type o
 An action can be bound to the `onchange` attribute:
 
 ```handlebars
-{{multiselect-checkboxes
-    options=users
-    labelProperty='name'
-    selection=selectedUsers
-    onchange=(action 'updateSelection')}}
+<Multiselect-checkboxes
+    @options={{this.users}}
+    @labelProperty='name'
+    @selection={{this.selectedUsers}}
+    @onchange={{action 'updateSelection'}}/>
 ```
 
 When a checkbox is checked or unchecked, this action will be triggered. The action handler will receive the following
@@ -80,12 +80,12 @@ update the value bound to the `selection` attribute yourself, this can be disabl
 attribute to `false`:
 
 ```handlebars
-{{multiselect-checkboxes
-    options=users
-    labelProperty='name'
-    selection=selectedUsers
-    onchange=(action 'updateSelection')
-    updateSelectionValue=false}}
+<Multiselect-checkboxes
+    @options={{this.users}}
+    @labelProperty='name'
+    @selection={{this.selectedUsers}}
+    @onchange={{action 'updateSelection'}}
+    @updateSelectionValue={{false}}/>
 ```
 
 You should then update the value bound to the `selection` property in the action bound to `onchange`, e.g.:
@@ -108,23 +108,23 @@ Ember 1.13 or newer). This template block will receive 3 block parameters: the o
 whether or not the option is selected, and the option's index:
 
 ```handlebars
-{{#multiselect-checkboxes options=users selection=selectedUsers as |user isSelected index|}}
+<Multiselect-checkboxes @options={{this.users}} @selection={{this.selectedUsers}} as |user isSelected index|>
   <!-- Your custom option template here -->
-{{/multiselect-checkboxes}}
+</Multiselect-checkboxes>
 ```
 
 The initial example without a custom template block is essentially equivalent to the following example with a custom
 template block:
 
 ```handlebars
-{{#multiselect-checkboxes options=users selection=selectedUsers as |user isSelected|}}
+<Multiselect-checkboxes @options={{this.users}} @selection={{this.selectedUsers}} as |user isSelected|>
   <li>
     <label>
-      {{input type="checkbox" checked=isSelected}}
+      <Input @type="checkbox" @checked={{isSelected}}/>
       {{user.name}}
     </label>
   </li>
-{{/multiselect-checkboxes}}
+</Multiselect-checkboxes>
 ```
 
 Note that the `labelProperty` attribute is superfluous when using a custom template block; instead, `{{user.name}}` is
@@ -134,7 +134,7 @@ By default the `multiselect-checkboxes` tag will render as an `ul` element. This
 `tagName` attribute:
 
 ```handlebars
-{{#multiselect-checkboxes tagName='div' ...}}
+<Multiselect-checkboxes tagName='div' ...>
   ...
-{{/multiselect-checkboxes}}
+</Multiselect-checkboxes>
 ```

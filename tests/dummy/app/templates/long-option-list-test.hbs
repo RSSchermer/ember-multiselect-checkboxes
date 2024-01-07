@@ -2,12 +2,12 @@
 
 <p>Selected options:
   <ul>
-    {{#each selectedOptions as |selectedOption|}}
+    {{#each this.selectedOptions as |selectedOption|}}
       <li>{{selectedOption}}</li>
     {{/each}}
   </ul>
 </p>
 
 <p>
-  {{multiselect-checkboxes options=options selection=selectedOptions}}
+  <Multiselect-checkboxes @options={{this.options}} @selection={{this.selectedOptions}}/>
 </p>
